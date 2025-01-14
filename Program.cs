@@ -36,15 +36,15 @@ public partial class Program
         app.UseMiddleware<ErrorLoggingMiddleware>();
 
         // שימוש ב-Swagger במצב פיתוח
-        if (app.Environment.IsDevelopment())
-        {
+        // if (app.Environment.IsDevelopment())
+        // {
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo API V1");
                 options.RoutePrefix = string.Empty;
             });
-        }
+        // }
 
         // שימוש במדיניות CORS
         app.UseCors("AllowSpecificOrigins");
@@ -81,7 +81,7 @@ public partial class Program
         {
             return await service.delete(id);
         });
-
+        app.MapGet("/",()=>"API is running!");
         app.Run();
     }
 }
